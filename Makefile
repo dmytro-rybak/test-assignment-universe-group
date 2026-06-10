@@ -7,7 +7,7 @@ help:
 		awk 'BEGIN {FS = ":.*?## "}; {printf "  %-20s %s\n", $$1, $$2}'
 
 cluster-up: ## Start minikube cluster
-	minikube start --profile=$(CLUSTER_NAME) --driver=docker
+	minikube start --profile=$(CLUSTER_NAME) --driver=docker --extra-config=scheduler.bind-address=0.0.0.0 --extra-config=controller-manager.bind-address=0.0.0.0 --extra-config=etcd.listen-metrics-urls=http://0.0.0.0:2381
 
 cluster-down: ## Stop minikube cluster (preserves state)
 	minikube stop --profile=$(CLUSTER_NAME)
