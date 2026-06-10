@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/dmytro-rybak/test-assignment-universe-group
-    targetRevision: HEAD
+    targetRevision: main
     path: kubernetes/argocd-apps
   destination:
     server: https://kubernetes.default.svc

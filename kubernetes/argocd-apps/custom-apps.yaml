@@ -19,7 +19,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/dmytro-rybak/test-assignment-universe-group
-        targetRevision: HEAD
+        targetRevision: main
         path: "kubernetes/custom-charts/{{app}}"
         helm:
           valueFiles:

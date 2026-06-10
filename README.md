@@ -53,6 +53,10 @@ make help           # list all targets
 
 Argo CD watches this repository (`main` branch) with automated sync (`prune` + `selfHeal`). Any change merged to `main` is applied to the cluster automatically.
 
+## Design notes
+
+- etcd, kube-scheduler and kube-controller-manager monitoring is disabled: minikube binds their metrics endpoints to `127.0.0.1`, making them unscrapable without intrusive node-level workarounds.
+
 ---
 
 ## Screenshots
