@@ -37,13 +37,14 @@ bootstrap: cluster-up ## Install Argo CD and apply app-of-apps
 forward: ## Port-forward Grafana → localhost:3001 and Argo CD → localhost:8081 (Ctrl-C to stop)
 	@echo "Grafana:  http://localhost:3001"
 	@echo "Argo CD:  http://localhost:8081"
-	@while true; do \
+	@trap 'kill 0' INT TERM; \
+	while true; do \
 		kubectl port-forward -n monitoring svc/grafana 3001:80; \
-		echo "Grafana forward lost (pod restarted?), reconnecting..."; sleep 2; \
+		echo "Grafana forward lost, reconnecting..."; sleep 2; \
 	done & \
 	while true; do \
 		kubectl port-forward -n argocd svc/argocd-server 8081:80; \
-		echo "Argo CD forward lost (pod restarted?), reconnecting..."; sleep 2; \
+		echo "Argo CD forward lost, reconnecting..."; sleep 2; \
 	done & \
 	wait
 
