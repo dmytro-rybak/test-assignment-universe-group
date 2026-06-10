@@ -63,5 +63,9 @@ Argo CD watches this repository (`main` branch) with automated sync (`prune` + `
 
 ### Argo CD
 
+![Argo CD](docs/images/argocd.png)
 
 ### Grafana — spam2000 dashboard
+
+![Grafana](docs/images/grafana-spam2000.png)
+![Grafana](docs/images/grafana-spam2000.2.png)
