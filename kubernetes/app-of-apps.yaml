@@ -21,3 +21,12 @@ spec:
       prune: true
       selfHeal: true
   revisionHistoryLimit: 5
+  ignoreDifferences:
+    - group: argoproj.io
+      kind: Application
+      jsonPointers:
+        - /metadata/finalizers
+    - group: argoproj.io
+      kind: ApplicationSet
+      jsonPointers:
+        - /metadata/finalizers

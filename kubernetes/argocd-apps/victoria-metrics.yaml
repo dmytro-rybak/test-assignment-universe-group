@@ -20,11 +20,23 @@ spec:
           enabled: false
         vmalert:
           enabled: false
+        kubeEtcd:
+          enabled: false
+        kubeControllerManager:
+          enabled: false
+        kubeScheduler:
+          enabled: false
         defaultDashboards:
           dashboards:
             victoriametrics-vmalert:
               enabled: false
             victoriametrics-operator:
+              enabled: false
+            kubeEtcd:
+              enabled: false
+            kubeControllerManager:
+              enabled: false
+            kubeScheduler:
               enabled: false
         grafana:
           fullnameOverride: grafana

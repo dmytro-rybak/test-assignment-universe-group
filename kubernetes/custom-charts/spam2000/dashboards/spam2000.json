@@ -429,7 +429,7 @@
         {
           "id": "organize",
           "options": {
-            "excludeByName": { "Time": true, "job": true },
+            "excludeByName": { "Time": true, "job": true, "exported_job": true, "instance": true },
             "indexByName": {},
             "renameByName": {
               "name": "Name",
@@ -497,19 +497,19 @@
         {
           "refId": "A",
           "datasource": { "type": "prometheus", "uid": "${datasource}" },
-          "expr": "histogram_quantile(0.50, sum(rate(random_histogram_bucket[5m])) by (le))",
+          "expr": "histogram_quantile(0.50, sum(increase(random_histogram_bucket[5m])) by (le))",
           "legendFormat": "p50"
         },
         {
           "refId": "B",
           "datasource": { "type": "prometheus", "uid": "${datasource}" },
-          "expr": "histogram_quantile(0.90, sum(rate(random_histogram_bucket[5m])) by (le))",
+          "expr": "histogram_quantile(0.90, sum(increase(random_histogram_bucket[5m])) by (le))",
           "legendFormat": "p90"
         },
         {
           "refId": "C",
           "datasource": { "type": "prometheus", "uid": "${datasource}" },
-          "expr": "histogram_quantile(0.99, sum(rate(random_histogram_bucket[5m])) by (le))",
+          "expr": "histogram_quantile(0.99, sum(increase(random_histogram_bucket[5m])) by (le))",
           "legendFormat": "p99"
         },
         {
@@ -601,7 +601,7 @@
         {
           "refId": "A",
           "datasource": { "type": "prometheus", "uid": "${datasource}" },
-          "expr": "sum(rate(random_histogram_bucket[5m])) by (le)",
+          "expr": "sum(increase(random_histogram_bucket[5m])) by (le)",
           "format": "heatmap",
           "legendFormat": "{{le}}"
         }
