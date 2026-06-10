@@ -19,9 +19,24 @@ spec:
         alertmanager:
           enabled: false
         vmalert:
-          enabled: false
+          enabled: true
+          spec:
+            extraArgs:
+              notifier.blackhole: "true"
         defaultRules:
+          enabled: true
+        kubeEtcd:
           enabled: false
+        kubeControllerManager:
+          enabled: false
+        kubeScheduler:
+          enabled: false
+        defaultDashboards:
+          dashboards:
+            victoriametrics-vmalert:
+              enabled: false
+            victoriametrics-operator:
+              enabled: false
         grafana:
           fullnameOverride: grafana
           sidecar:

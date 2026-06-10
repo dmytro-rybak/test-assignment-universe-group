@@ -1,0 +1,252 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": { "type": "grafana", "uid": "-- Grafana --" },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "links": [],
+  "liveNow": false,
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "tags": ["spam2000", "test-assignment"],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": { "from": "now-1h", "to": "now" },
+  "timepicker": {},
+  "timezone": "utc",
+  "title": "spam2000",
+  "uid": "spam2000-app",
+  "version": 1,
+  "panels": [
+    {
+      "type": "row",
+      "title": "Scrape health",
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 1,
+      "panels": []
+    },
+    {
+      "type": "stat",
+      "title": "Target up",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 1 },
+      "id": 2,
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [ { "color": "red", "value": null }, { "color": "green", "value": 1 } ] },
+          "color": { "mode": "thresholds" }
+        },
+        "overrides": []
+      },
+      "options": { "colorMode": "background", "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "up{job=\"spam2000\"}", "instant": true }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Samples scraped",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 1 },
+      "id": 3,
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "blue", "value": null } ] }, "unit": "short" }, "overrides": [] },
+      "options": { "colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "scrape_samples_scraped{job=\"spam2000\"}", "instant": true }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Scrape duration",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 1 },
+      "id": 4,
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null }, { "color": "yellow", "value": 1 }, { "color": "red", "value": 5 } ] }, "unit": "s" }, "overrides": [] },
+      "options": { "colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "scrape_duration_seconds{job=\"spam2000\"}", "instant": true }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Exposed series",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 1 },
+      "id": 5,
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "purple", "value": null } ] }, "unit": "short" }, "overrides": [] },
+      "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "scrape_series_added{job=\"spam2000\"}", "instant": true }
+      ]
+    },
+    {
+      "type": "row",
+      "title": "Gauges",
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 5 },
+      "id": 10,
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "random_gauge_* — total (sum of all series)",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 },
+      "id": 11,
+      "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10, "lineWidth": 2, "showPoints": "never" }, "color": { "mode": "palette-classic" }, "unit": "short" }, "overrides": [] },
+      "options": { "legend": { "calcs": ["mean", "lastNotNull"], "displayMode": "table", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "multi", "sort": "desc" } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(random_gauge_1)", "legendFormat": "random_gauge_1" },
+        { "refId": "B", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(random_gauge_2)", "legendFormat": "random_gauge_2" },
+        { "refId": "C", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(random_gauge_3)", "legendFormat": "random_gauge_3" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "random_gauge_* — average per series",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 6 },
+      "id": 12,
+      "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10, "lineWidth": 2, "showPoints": "never" }, "color": { "mode": "palette-classic" }, "unit": "short" }, "overrides": [] },
+      "options": { "legend": { "calcs": ["mean", "lastNotNull"], "displayMode": "table", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "multi", "sort": "desc" } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "avg(random_gauge_1)", "legendFormat": "random_gauge_1" },
+        { "refId": "B", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "avg(random_gauge_2)", "legendFormat": "random_gauge_2" },
+        { "refId": "C", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "avg(random_gauge_3)", "legendFormat": "random_gauge_3" }
+      ]
+    },
+    {
+      "type": "barchart",
+      "title": "Top 10 countries — sum(random_gauge_1)",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 14 },
+      "id": 13,
+      "fieldConfig": { "defaults": { "color": { "mode": "palette-classic" }, "unit": "short", "custom": { "fillOpacity": 80, "lineWidth": 1 } }, "overrides": [] },
+      "options": { "orientation": "horizontal", "showValue": "auto", "xTickLabelRotation": 0, "legend": { "showLegend": false }, "tooltip": { "mode": "single" } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "topk(10, sum by (country) (random_gauge_1))", "legendFormat": "{{country}}", "instant": true, "format": "table" }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Top 10 platforms — sum(random_gauge_2)",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 14 },
+      "id": 14,
+      "fieldConfig": { "defaults": { "custom": { "align": "auto", "filterable": false }, "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null } ] } }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] },
+      "transformations": [
+        { "id": "organize", "options": { "excludeByName": { "Time": true }, "renameByName": { "platform": "Platform", "Value": "Sum" } } }
+      ],
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "topk(10, sum by (platform) (random_gauge_2))", "format": "table", "instant": true }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Top 15 by name_gauge",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 9, "w": 24, "x": 0, "y": 23 },
+      "id": 15,
+      "fieldConfig": { "defaults": { "custom": { "align": "auto", "filterable": true }, "color": { "mode": "thresholds" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null }, { "color": "orange", "value": 50 }, { "color": "red", "value": 80 } ] } }, "overrides": [] },
+      "options": { "showHeader": true, "footer": { "show": false }, "sortBy": [ { "displayName": "Value", "desc": true } ] },
+      "transformations": [
+        { "id": "organize", "options": { "excludeByName": { "Time": true, "job": true }, "indexByName": {}, "renameByName": { "name": "Name", "email": "Email", "Value": "Value" } } }
+      ],
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "topk(15, name_gauge)", "format": "table", "instant": true }
+      ]
+    },
+    {
+      "type": "row",
+      "title": "Histograms",
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 32 },
+      "id": 20,
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "random_histogram — observation rate & quantiles",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 33 },
+      "id": 21,
+      "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10, "lineWidth": 2, "showPoints": "never" }, "color": { "mode": "palette-classic" }, "unit": "short" }, "overrides": [ { "matcher": { "id": "byName", "options": "obs/s" }, "properties": [ { "id": "custom.axisPlacement", "value": "right" }, { "id": "unit", "value": "ops" } ] } ] },
+      "options": { "legend": { "calcs": ["mean", "lastNotNull"], "displayMode": "table", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "multi", "sort": "desc" } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "histogram_quantile(0.50, sum(rate(random_histogram_bucket[5m])) by (le))", "legendFormat": "p50" },
+        { "refId": "B", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "histogram_quantile(0.90, sum(rate(random_histogram_bucket[5m])) by (le))", "legendFormat": "p90" },
+        { "refId": "C", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "histogram_quantile(0.99, sum(rate(random_histogram_bucket[5m])) by (le))", "legendFormat": "p99" },
+        { "refId": "D", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(rate(random_histogram_count[5m]))", "legendFormat": "obs/s" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "ordered_histogram — observation rate & quantiles",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 33 },
+      "id": 22,
+      "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10, "lineWidth": 2, "showPoints": "never" }, "color": { "mode": "palette-classic" }, "unit": "short" }, "overrides": [ { "matcher": { "id": "byName", "options": "obs/s" }, "properties": [ { "id": "custom.axisPlacement", "value": "right" }, { "id": "unit", "value": "ops" } ] } ] },
+      "options": { "legend": { "calcs": ["mean", "lastNotNull"], "displayMode": "table", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "multi", "sort": "desc" } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "histogram_quantile(0.50, sum(rate(ordered_histogram_bucket[5m])) by (le))", "legendFormat": "p50" },
+        { "refId": "B", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "histogram_quantile(0.90, sum(rate(ordered_histogram_bucket[5m])) by (le))", "legendFormat": "p90" },
+        { "refId": "C", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "histogram_quantile(0.99, sum(rate(ordered_histogram_bucket[5m])) by (le))", "legendFormat": "p99" },
+        { "refId": "D", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(rate(ordered_histogram_count[5m]))", "legendFormat": "obs/s" }
+      ]
+    },
+    {
+      "type": "heatmap",
+      "title": "random_histogram — distribution heatmap",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 41 },
+      "id": 23,
+      "options": { "calculate": false, "cellGap": 1, "color": { "scheme": "Spectral", "steps": 64, "mode": "scheme" }, "yAxis": { "unit": "short" }, "legend": { "show": true }, "tooltip": { "show": true, "yHistogram": true } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(rate(random_histogram_bucket[5m])) by (le)", "format": "heatmap", "legendFormat": "{{le}}" }
+      ]
+    },
+    {
+      "type": "heatmap",
+      "title": "ordered_histogram — distribution heatmap",
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 41 },
+      "id": 24,
+      "options": { "calculate": false, "cellGap": 1, "color": { "scheme": "Spectral", "steps": 64, "mode": "scheme" }, "yAxis": { "unit": "short" }, "legend": { "show": true }, "tooltip": { "show": true, "yHistogram": true } },
+      "targets": [
+        { "refId": "A", "datasource": { "type": "prometheus", "uid": "${datasource}" }, "expr": "sum(rate(ordered_histogram_bucket[5m])) by (le)", "format": "heatmap", "legendFormat": "{{le}}" }
+      ]
+    }
+  ]
+}
